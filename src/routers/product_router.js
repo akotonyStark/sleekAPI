@@ -23,7 +23,7 @@ router.get('/products', async(req, res) => {
         }
         res.status(200).send(products)
     } catch (e) {
-        res.status(500).sen
+        res.status(500).send()
         console.log(e)
     }
 });
