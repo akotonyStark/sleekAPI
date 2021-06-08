@@ -1,0 +1,26 @@
+{
+    "name": "sleekcollectionsapi",
+    "version": "1.0.0",
+    "description": "",
+    "main": "index.js",
+    "directories": {
+        "test": "tests"
+    },
+    "scripts": {
+        "start": "env-cmd ./config/.env nodemon src/index.js",
+        "dev": "env-cmd ./config/dev.env nodemon src/index.js",
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "keywords": [],
+    "author": "",
+    "license": "ISC",
+    "devDependencies": {
+        "env-cmd": "^8.0.2",
+        "nodemon": "^2.0.7"
+    },
+    "dependencies": {
+        "express": "^4.17.1",
+        "mongoose": "^5.12.13",
+        "env-cmd": "^8.0.2"
+    }
+}
