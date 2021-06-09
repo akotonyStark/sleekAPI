@@ -25,6 +25,171 @@
             "description": "API for categories in the system"
         }],
 
+        "paths": {
+            "/products": {
+                "get": {
+                    "tags": ["Products"],
+                    "summary": "Get all products in system",
+                    "responses": {
+                        "200": {
+                            "description": "OK"
+                        }
+                    }
+                },
+                "post": {
+                    "tags": ["Products"],
+                    "summary": "Post products in system",
+                    "responses": {
+                        "200": {
+                            "description": "OK",
+                            "schema": {
+                                "$ref": "#/definitions/product"
+                            }
+                        }
+                    }
+                },
+                "delete": {
+                    "tags": ["Products"],
+                    "summary": "Delete all products in system",
+                    "responses": {
+                        "200": {
+                            "description": "OK"
+                        }
+                    }
+                }
+            },
+            "/products/id": {
+                "get": {
+                    "tags": ["Products"],
+                    "summary": "Get all products in system",
+                    "responses": {
+                        "200": {
+                            "description": "OK",
+                            "schema": {
+                                "$ref": "#/definitions/product"
+                            }
+                        }
+                    }
+                },
+                "delete": {
+                    "tags": ["Products"],
+                    "summary": "Delete a product in system",
+                    "responses": {
+                        "200": {
+                            "description": "OK",
+                            "schema": {
+                                "$ref": "#/definitions/product"
+                            }
+                        }
+                    }
+                }
+            },
+            "/category": {
+                "get": {
+                    "tags": ["Category"],
+                    "summary": "Get all categories in system",
+                    "responses": {
+                        "200": {
+                            "description": "OK",
+                            "schema": {
+                                "$ref": "#/definitions/Category"
+                            }
+                        }
+                    }
+                },
+                "post": {
+                    "tags": ["Category"],
+                    "summary": "Post Category in system",
+                    "responses": {
+                        "200": {
+                            "description": "OK",
+                            "schema": {
+                                "$ref": "#/definitions/product"
+                            }
+                        }
+                    }
+                },
+                "delete": {
+                    "tags": ["Category"],
+                    "summary": "Delete all Category in system",
+                    "responses": {
+                        "200": {
+                            "description": "OK",
+                            "schema": {
+                                "$ref": "#/definitions/Category"
+                            }
+                        }
+                    }
+                }
+            },
+            "/category/id": {
+                "get": {
+                    "tags": ["Category"],
+                    "summary": "Get a Category in system",
+                    "responses": {
+                        "200": {
+                            "description": "OK",
+                            "schema": {
+                                "$ref": "#/definitions/Category"
+                            }
+                        }
+                    }
+                },
+                "delete": {
+                    "tags": ["Category"],
+                    "summary": "Delete a Category in system",
+                    "responses": {
+                        "200": {
+                            "description": "OK",
+                            "schema": {
+                                "$ref": "#/definitions/Category"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "definitions": {
+            "product": {
+                "required": ["name", "description", "quantity", "unit_price"],
+                "properties": {
+                    "name": {
+                        "type": "String",
+                        "uniqueItems": false
+                    },
+                    "description": {
+                        "type": "String"
+                    },
+                    "quantity": {
+                        "type": "integer"
+                    },
+                    "category": {
+                        "type": "String"
+                    },
+                    "manufacturer": {
+                        "type": "String"
+                    },
+                    "supplier": {
+                        "type": "String"
+                    },
+                    "unit_price": {
+                        "type": "Number",
+                        "required": true
+                    },
+                    "ratings": {
+                        "type": "Number",
+                        "default": 1
+                    },
+                    "status": {
+                        "type": "Boolean",
+                        "default": true
+                    },
+                    "image": {
+                        "type": "Buffer"
+                    }
+                }
+            }
+        },
         "schemes": ["http", "https"],
         "consumes": ["application/json"],
         "produces": ["application/json"]
@@ -36,41 +201,6 @@
         {
             "url": "https://sleek-collections-api.herokuapp.com/"
         }
-    ],
-
-
-    "paths": {
-        "/routers": {
-            "get": {
-                "tags": ["Products"],
-                "summary": "Get all products in system",
-                "responses": {
-                    "200": {
-                        "description": "OK",
-                        "schema": {
-                            "$ref": "#/definitions/product"
-                        }
-                    }
-                }
-            }
-        }
-    },
-    "definitions": {
-        "Product": {
-            "required": ["name", "description"],
-            "properties": {
-                "name": {
-                    "type": "String",
-                    "required": true,
-                    "trim": true
-                },
-                "description": {
-                    "type": "String",
-                    "required": true,
-                    "trim": true
-                }
-            }
-        }
-    }
+    ]
 
 }
