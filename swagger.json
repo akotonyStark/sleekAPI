@@ -25,6 +25,194 @@
             "description": "API for categories in the system"
         }],
 
+        "paths": {
+            "/products": {
+                "get": {
+                    "tags": ["Products"],
+                    "summary": "Get all products in system",
+                    "responses": {
+                        "200": {
+                            "description": "Succes"
+                        }
+                    }
+                },
+                "post": {
+                    "tags": ["Products"],
+                    "summary": "Post products in system",
+                    "parameters": [{
+                        "name": "products",
+                        "in": "body",
+                        "description": "Product that we want to create",
+                        "schema": {
+                            "$ref": "#/definitions/product"
+                        }
+                    }],
+                    "produces": ["application/json"],
+                    "responses": {
+                        "200": {
+                            "description": "Successfully Added",
+                            "schema": {
+                                "$ref": "#/definitions/product"
+                            }
+                        }
+                    }
+                },
+                "delete": {
+                    "tags": ["Products"],
+                    "summary": "Delete all products in system",
+                    "responses": {
+                        "200": {
+                            "description": "OK"
+                        }
+                    }
+                }
+            },
+            "/products/{id}": {
+                "get": {
+                    "tags": ["Products"],
+                    "summary": "Get a product in the system",
+                    "parameters": [{
+                        "name": "id",
+                        "in": "path",
+                        "description": "product id"
+                    }],
+                    "produces": ["application/json"],
+                    "responses": {
+                        "200": {
+                            "description": "OK",
+                            "schema": {
+                                "$ref": "#/definitions/product"
+                            }
+                        }
+                    }
+                },
+                "delete": {
+                    "tags": ["Products"],
+                    "summary": "Delete a product in the system",
+                    "parameters": [{
+                        "name": "id",
+                        "in": "path",
+                        "description": "product id"
+                    }],
+                    "responses": {
+                        "200": {
+                            "description": "OK",
+                            "schema": {
+                                "$ref": "#/definitions/product"
+                            }
+                        }
+                    }
+                }
+            },
+            "/category": {
+                "get": {
+                    "tags": ["Category"],
+                    "summary": "Get all categories in system",
+                    "responses": {
+                        "200": {
+                            "description": "OK",
+                            "schema": {
+                                "$ref": "#/definitions/Category"
+                            }
+                        }
+                    }
+                },
+                "post": {
+                    "tags": ["Category"],
+                    "summary": "Post Category in system",
+                    "responses": {
+                        "200": {
+                            "description": "OK",
+                            "schema": {
+                                "$ref": "#/definitions/product"
+                            }
+                        }
+                    }
+                },
+                "delete": {
+                    "tags": ["Category"],
+                    "summary": "Delete all Category in system",
+                    "responses": {
+                        "200": {
+                            "description": "OK",
+                            "schema": {
+                                "$ref": "#/definitions/Category"
+                            }
+                        }
+                    }
+                }
+            },
+            "/category/id": {
+                "get": {
+                    "tags": ["Category"],
+                    "summary": "Get a Category in system",
+                    "responses": {
+                        "200": {
+                            "description": "OK",
+                            "schema": {
+                                "$ref": "#/definitions/Category"
+                            }
+                        }
+                    }
+                },
+                "delete": {
+                    "tags": ["Category"],
+                    "summary": "Delete a Category in system",
+                    "responses": {
+                        "200": {
+                            "description": "OK",
+                            "schema": {
+                                "$ref": "#/definitions/Category"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "definitions": {
+            "product": {
+                "required": ["name", "description", "quantity", "unit_price"],
+                "properties": {
+                    "name": {
+                        "type": "string"
+                    },
+                    "description": {
+                        "type": "string"
+                    },
+                    "quantity": {
+                        "type": "number"
+                    },
+                    "category": {
+                        "type": "string"
+                    },
+                    "manufacturer": {
+                        "type": "string"
+                    },
+                    "supplier": {
+                        "type": "string"
+                    },
+                    "unit_price": {
+                        "type": "number",
+                        "required": true
+                    },
+                    "ratings": {
+                        "type": "number",
+                        "default": 1
+                    },
+                    "status": {
+                        "type": "Boolean",
+                        "default": true
+                    },
+                    "image": {
+                        "type": "string"
+                    },
+                    "tokens": {
+                        "type": "array",
+                        "default": []
+                    }
+                }
+            }
+        },
         "schemes": ["http", "https"],
         "consumes": ["application/json"],
         "produces": ["application/json"]
@@ -36,41 +224,6 @@
         {
             "url": "https://sleek-collections-api.herokuapp.com/"
         }
-    ],
-
-
-    "paths": {
-        "/routers": {
-            "get": {
-                "tags": ["Products"],
-                "summary": "Get all products in system",
-                "responses": {
-                    "200": {
-                        "description": "OK",
-                        "schema": {
-                            "$ref": "#/definitions/product"
-                        }
-                    }
-                }
-            }
-        }
-    },
-    "definitions": {
-        "Product": {
-            "required": ["name", "description"],
-            "properties": {
-                "name": {
-                    "type": "String",
-                    "required": true,
-                    "trim": true
-                },
-                "description": {
-                    "type": "String",
-                    "required": true,
-                    "trim": true
-                }
-            }
-        }
-    }
+    ]
 
 }
