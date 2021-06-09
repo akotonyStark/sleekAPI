@@ -15,7 +15,7 @@
                 "email": "akwaabaevolution@email.com"
             }
         },
-        "host": "https://sleek-collections-api.herokuapp.com/",
+        "host": "https://sleek-collections-api.herokuapp.com",
         "basePath": "/",
         "tags": [{
             "name": "Products",
