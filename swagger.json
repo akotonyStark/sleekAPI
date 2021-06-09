@@ -1,21 +1,76 @@
 {
-    "swagger": "2.0",
-    "info": {
-        "version": "1.0.0",
-        "title": "Sleek API",
-        "description": "My User Project Application API",
-        "license": {
-            "name": "MIT",
-            "url": "https://opensource.org/licenses/MIT"
+    "swaggerDefinition": {
+        "swagger": "2.0",
+        "info": {
+            "title": "Sleek Collections API",
+            "version": "1.0.0",
+            "description": "This is a simple CRUD API application made with Express and documented with Swagger",
+            "license": {
+                "name": "MIT",
+                "url": "https://opensource.org/licenses/MIT"
+            },
+            "contact": {
+                "name": "Akwaaba Evolution",
+                "url": "https://akwaabaevolution.com",
+                "email": "akwaabaevolution@email.com"
+            }
+        },
+        "host": "localhost:3000",
+        "basePath": "/",
+        "tags": [{
+            "name": "Products",
+            "description": "API for products in the system"
+        }, {
+            "name": "Category",
+            "description": "API for categories in the system"
+        }],
+
+        "schemes": ["http", "https"],
+        "consumes": ["application/json"],
+        "produces": ["application/json"]
+    },
+    "apis": ["./src/routers/*.js"],
+    "servers": [{
+            "url": "http://localhost:3000/"
+        },
+        {
+            "url": "https://sleek-collections-api.herokuapp.com/"
+        }
+    ],
+
+
+    "paths": {
+        "/routers": {
+            "get": {
+                "tags": ["Products"],
+                "summary": "Get all products in system",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/product"
+                        }
+                    }
+                }
+            }
         }
     },
-    "host": "localhost:8000",
-    "basePath": "/",
-    "tags": [{
-        "name": "Products",
-        "description": "API for products in the system"
-    }],
-    "schemes": ["http"],
-    "consumes": ["application/json"],
-    "produces": ["application/json"]
+    "definitions": {
+        "Product": {
+            "required": ["name", "description"],
+            "properties": {
+                "name": {
+                    "type": "String",
+                    "required": true,
+                    "trim": true
+                },
+                "description": {
+                    "type": "String",
+                    "required": true,
+                    "trim": true
+                }
+            }
+        }
+    }
+
 }
