@@ -3,7 +3,16 @@ const Product = require('../models/product')
 
 const router = new express.Router()
 
-// POST ADD PRODUCT
+
+/**
+ * @swagger
+ * /Products:
+ *   post:
+ *      description: Add new Product 
+ *      responses:
+ *         201:
+ *           description: Success
+ */
 router.post('/products', async(req, res) => {
     const product = new Product(req.body)
     try {
@@ -14,7 +23,18 @@ router.post('/products', async(req, res) => {
     }
 });
 
-// GET ALL PRODUCTS
+
+/**
+ * @swagger
+ * /Products:
+ *   get:
+ *      description: Get All Products 
+ *      responses:
+ *         200:
+ *           description: Success
+ *         404:
+ *           description: Not found
+ */
 router.get('/products', async(req, res) => {
     try {
         const products = await Product.find({})
@@ -28,14 +48,27 @@ router.get('/products', async(req, res) => {
     }
 });
 
-// DEL PRODUCT
+/**
+ * @swagger
+ * /Products/id:
+ *   delete:
+ *      description: Delete a Product 
+ *      parameters:
+ *        - name: id
+ *          required: true
+ *      responses:
+ *         200:
+ *           description: Success
+ *         404:
+ *           description: Not found
+ */
 router.delete('/products/:id', async(req, res) => {
     const product = await Product.findByIdAndDelete(req.params.id)
     try {
         if (!product) {
             return res.status(404).send()
         }
-        res.send(product)
+        res.status(200).send(product)
             //await req.product.remove()
             //res.send(req.product)
     } catch (e) {
@@ -44,7 +77,17 @@ router.delete('/products/:id', async(req, res) => {
     }
 })
 
-// DEL ALL PRODUCTS
+/**
+ * @swagger
+ * /Products:
+ *   delete:
+ *      description: Delete All Products 
+ *      responses:
+ *         200:
+ *           description: Success
+ *         404:
+ *           description: Not found
+ */
 router.delete('/products', async(req, res) => {
     const product = await Product.deleteMany({})
     try {
@@ -52,7 +95,7 @@ router.delete('/products', async(req, res) => {
             return res.status(404).send()
         }
         //await req.product.remove()
-        res.send(product)
+        res.status(200).send(product)
     } catch (e) {
         console.log(e)
         res.status(500).send()

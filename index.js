@@ -14,13 +14,28 @@ const port = process.env.PORT || 3001
 //swagger config
 const swaggerOptions = {
     swaggerDefinition: {
+        openapi: "3.0.0",
         info: {
             title: 'Sleek Collections API',
-            version: '1.0.0'
-        }
+            version: '1.0.0',
+            description: "This is a simple CRUD API application made with Express and documented with Swagger",
+        },
+        contact: {
+            name: "Akwaaba Evolution",
+            url: "https://akwaabaevolution.com",
+            email: "akwaabaevolution@email.com",
+        },
     },
-    apis: ['index.js']
+    servers: [{
+            url: "http://localhost:3000/category",
+        },
+        {
+            url: "https://sleek-collections-api.herokuapp.com/category"
+        }
+    ],
+    apis: ['./src/routers/*.js']
 }
+
 const swaggerDocs = swaggerJSDoc(swaggerOptions);
 app.use('/api-docs', swaggerUI.serve, swaggerUI.setup(swaggerDocs))
 
@@ -28,6 +43,7 @@ app.use('/api-docs', swaggerUI.serve, swaggerUI.setup(swaggerDocs))
 app.use(express.json())
 app.use(productRouter)
 app.use(categoryRouter)
+    //app.use('/api-docs', swaggerUI.serve, swaggerUI.setup(swaggerDocs))
 
 app.listen(port, () => {
     console.log('Listening to sleek api on port: ', port)
