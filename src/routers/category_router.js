@@ -3,15 +3,6 @@ const Category = require('../models/category')
 
 const router = express.Router()
 
-/**
- * @swagger
- * /Category:
- *   post:
- *      description: Add new category 
- *      responses:
- *         201:
- *           description: Success
- */
 router.post('/category', async(req, res) => {
     const category = new Category(req.body)
 
@@ -24,15 +15,6 @@ router.post('/category', async(req, res) => {
 })
 
 
-/**
- * @swagger
- * /Category:
- *   get:
- *     description: Get All Categories
- *     responses:
- *       200: 
- *         description: Success
- */
 router.get('/category', async(req, res) => {
     const category = await Category.find({})
 
@@ -46,20 +28,7 @@ router.get('/category', async(req, res) => {
     }
 })
 
-/**
- * @swagger
- * /Category/id:
- *   delete:
- *      description: Delete a Category 
- *      parameters:
- *        - name: id
- *          required: true
- *      responses:
- *         200:
- *           description: Success
- *         404:
- *           description: Not found
- */
+
 router.delete('/category/:id', async(req, res) => {
     const category = await Category.findByIdAndDelete(req.params.id)
     try {
@@ -75,17 +44,7 @@ router.delete('/category/:id', async(req, res) => {
     }
 })
 
-/**
- * @swagger
- * /Category:
- *   delete:
- *      description: Delete All Categories 
- *      responses:
- *         200:
- *           description: Success
- *         404:
- *           description: Not found
- */
+
 router.delete('/category', async(req, res) => {
     const category = await Category.deleteMany({})
     try {
