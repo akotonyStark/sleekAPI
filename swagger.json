@@ -32,16 +32,25 @@
                     "summary": "Get all products in system",
                     "responses": {
                         "200": {
-                            "description": "OK"
+                            "description": "Succes"
                         }
                     }
                 },
                 "post": {
                     "tags": ["Products"],
                     "summary": "Post products in system",
+                    "parameters": [{
+                        "name": "products",
+                        "in": "body",
+                        "description": "Product that we want to create",
+                        "schema": {
+                            "$ref": "#/definitions/product"
+                        }
+                    }],
+                    "produces": ["application/json"],
                     "responses": {
                         "200": {
-                            "description": "OK",
+                            "description": "Successfully Added",
                             "schema": {
                                 "$ref": "#/definitions/product"
                             }
@@ -154,30 +163,29 @@
                 "required": ["name", "description", "quantity", "unit_price"],
                 "properties": {
                     "name": {
-                        "type": "String",
-                        "uniqueItems": false
+                        "type": "string"
                     },
                     "description": {
-                        "type": "String"
+                        "type": "string"
                     },
                     "quantity": {
-                        "type": "integer"
+                        "type": "number"
                     },
                     "category": {
-                        "type": "String"
+                        "type": "string"
                     },
                     "manufacturer": {
-                        "type": "String"
+                        "type": "string"
                     },
                     "supplier": {
-                        "type": "String"
+                        "type": "string"
                     },
                     "unit_price": {
-                        "type": "Number",
+                        "type": "number",
                         "required": true
                     },
                     "ratings": {
-                        "type": "Number",
+                        "type": "number",
                         "default": 1
                     },
                     "status": {
@@ -185,7 +193,11 @@
                         "default": true
                     },
                     "image": {
-                        "type": "Buffer"
+                        "type": "string"
+                    },
+                    "tokens": {
+                        "type": "array",
+                        "default": []
                     }
                 }
             }
