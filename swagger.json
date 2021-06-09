@@ -12,8 +12,8 @@
     "host": "localhost:8000",
     "basePath": "/",
     "tags": [{
-        "name": "Users",
-        "description": "API for users in the system"
+        "name": "Products",
+        "description": "API for products in the system"
     }],
     "schemes": ["http"],
     "consumes": ["application/json"],
