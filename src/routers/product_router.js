@@ -3,16 +3,6 @@ const Product = require('../models/product')
 
 const router = new express.Router()
 
-
-/**
- * @swagger
- * /Products:
- *   post:
- *      description: Add new Product 
- *      responses:
- *         201:
- *           description: Success
- */
 router.post('/products', async(req, res) => {
     const product = new Product(req.body)
     try {
@@ -24,17 +14,6 @@ router.post('/products', async(req, res) => {
 });
 
 
-/**
- * @swagger
- * /Products:
- *   get:
- *      description: Get All Products 
- *      responses:
- *         200:
- *           description: Success
- *         404:
- *           description: Not found
- */
 router.get('/products', async(req, res) => {
     try {
         const products = await Product.find({})
@@ -48,20 +27,7 @@ router.get('/products', async(req, res) => {
     }
 });
 
-/**
- * @swagger
- * /Products/id:
- *   delete:
- *      description: Delete a Product 
- *      parameters:
- *        - name: id
- *          required: true
- *      responses:
- *         200:
- *           description: Success
- *         404:
- *           description: Not found
- */
+
 router.delete('/products/:id', async(req, res) => {
     const product = await Product.findByIdAndDelete(req.params.id)
     try {
@@ -77,17 +43,7 @@ router.delete('/products/:id', async(req, res) => {
     }
 })
 
-/**
- * @swagger
- * /Products:
- *   delete:
- *      description: Delete All Products 
- *      responses:
- *         200:
- *           description: Success
- *         404:
- *           description: Not found
- */
+
 router.delete('/products', async(req, res) => {
     const product = await Product.deleteMany({})
     try {
